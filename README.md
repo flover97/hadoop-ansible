@@ -198,6 +198,9 @@ above two variables must be same like your real hadoop master
 ansible-playbook -i hosts/host workers.yml -e "master_ip=172.16.251.70 master_hostname=hadoop-master"
 
 ```
+### Source project
+
+https://github.com/pippozq/hadoop-ansible
 
 ### License
 
