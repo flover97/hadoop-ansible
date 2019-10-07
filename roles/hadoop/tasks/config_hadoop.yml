@@ -1,0 +1,25 @@
+---
+- name: Copy Hadoop core-site.xml
+  template: src=core-site.xml.j2 dest={{ hadoop_config_path }}/core-site.xml mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop hdfs-site.xml
+  template: src=hdfs-site.xml.j2 dest={{ hadoop_config_path }}/hdfs-site.xml mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop mapred-site.xml
+  template: src=mapred-site.xml.j2 dest={{ hadoop_config_path }}/mapred-site.xml mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop yarn-site.xml
+  template: src=yarn-site.xml.j2 dest={{ hadoop_config_path }}/yarn-site.xml mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop workers
+  template: src=workers.j2 dest={{ hadoop_config_path }}/workers mode=644 owner={{ user }} group = {{ group }}
+
+- name: Copy Hadoop Env Script
+  template: src=hadoop-env.sh.j2 dest={{ hadoop_config_path }}/hadoop-env.sh mode=644 owner={{ user }} group = {{ group }}
+
+- name: Set Hadoop Env
+  blockinfile:
+    path: /etc/bash.bashrc
+    block: |
+      export HADOOP_HOME=/home/hadoop/hadoop-{{ hadoop_version }}
+      export PATH=$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH

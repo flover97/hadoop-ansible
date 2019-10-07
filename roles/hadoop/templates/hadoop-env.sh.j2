@@ -1,0 +1,10 @@
+export HADOOP_HOME=/home/hadoop/hadoop-{{ hadoop_version }}
+export PATH=$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH
+export HADOOP_LOG_DIR=/home/hadoop/hadoop_logs
+export YARN_LOG_DIR=$HADOOP_LOG_DIR
+export JAVA_HOME=/usr/lib/jvm/{{ java_version }}
+export HADOOP_OS_TYPE=${HADOOP_OS_TYPE:-$(uname -s)}
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib"
+export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native
+export HADOOP_SHELL_EXECNAME="root"

@@ -1,0 +1,27 @@
+---
+- name: Create Hadoop Path
+  file:
+    path: "{{ java_home }}"
+    state: directory
+
+- name: Copy Java
+  copy: src=jdk1.8.0.tar.gz dest=/tmp owner={{ user }} mode=755
+
+- name: Untar Java
+  shell: "tar zxf /tmp/jdk1.8.0.tar.gz -C {{ java_home }}"
+  args:
+    executable: /bin/bash
+
+
+- name: Java Install Script
+  template: src=java_install.sh.j2 dest=/root/java_install.sh
+
+- name: Start installation
+  shell: bash +x /root/java_install.sh
+  args:
+    executable: /bin/bash
+
+- name: Insert a line at the end of a file.
+  lineinfile:
+    path: /etc/bash.bashrc
+    line: export JAVA_HOME={{ java_home }}/{{ java_version }}

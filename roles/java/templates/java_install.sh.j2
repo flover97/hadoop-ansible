@@ -1,0 +1,10 @@
+#!/bin/bash
+
+update-alternatives --install "/usr/bin/java" "java" "{{ java_home }}/{{ java_version }}/bin/java" 1
+update-alternatives --install "/usr/bin/javac" "javac" "{{ java_home }}/{{ java_version }}/bin/javac" 1
+update-alternatives --install "/usr/bin/javaws" "javaws" "{{ java_home }}/{{ java_version }}/bin/javaws" 1
+
+chmod a+x /usr/bin/java
+chmod a+x /usr/bin/javac
+chmod a+x /usr/bin/javaws
+chown -R root:root {{ java_home }}/{{ java_version }}
