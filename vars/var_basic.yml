@@ -112,12 +112,3 @@ yarn_site_properties:
   }
 
 dashbord_port: 9870
-firewall_ports:
-  - "{{ dashbord_port}}"
-  - "{{ hdfs_port }}"
-  - "{{ dfs_namenode_httpport }}"
-  - "{{ yarn_resourcemanager_port }}"
-  - "{{ yarn_resourcemanager_scheduler_port }}"
-  - "{{ yarn_resourcemanager_webapp_port }}"
-  - "{{ yarn_resourcemanager_tracker_port }}"
-  - "{{ yarn_resourcemanager_admin_port }}"
