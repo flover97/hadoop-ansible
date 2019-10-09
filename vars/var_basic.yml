@@ -27,7 +27,7 @@ hdfs_port: 9000
 core_site_properties:
   - {
       "name":"fs.defaultFS",
-      "value":"hdfs://0.0.0.0:{{ hdfs_port }}"
+      "value":"hdfs://{{ master_hostname }}:{{ hdfs_port }}"
   }
   - {
       "name":"hadoop.tmp.dir",
