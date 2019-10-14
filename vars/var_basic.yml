@@ -4,7 +4,7 @@ java_home: "/usr/lib/jvm"
 java_version: "jdk1.8.0_221"
 
 master_ip: "192.168.200.66"
-master_hostname: "hadoop-node-master"
+master_hostname: "hadoop-node-master.dt.local"
 
 # hadoop basic vars
 hadoop_version: "3.2.1"
@@ -35,9 +35,20 @@ core_site_properties:
   }
   - {
     "name":"io.file.buffer.size",
-    "value":"131072"
+    "value":"4096"
   }
-
+  - {
+    "name":"hadoop.proxyuser.root.groups",
+    "value":"*"
+  }
+   - {
+    "name":"hadoop.proxyuser.root.hosts",
+    "value":"*"
+  }
+  - {
+    "name":"hadoop.proxyuser.nfsserver.hosts",
+    "value":"127.0.0.1"
+  }  
 dfs_namenode_httpport: 9001
 hdfs_site_properties:
   - {
@@ -60,7 +71,34 @@ hdfs_site_properties:
     "name":"dfs.webhdfs.enabled",
     "value":"true"
   }
-
+  - {
+    "name":"dfs.namenode.accesstime.precision",
+    "value":"3600000"
+  }
+  - {
+    "name":"nfs.dump.dir",
+    "value":"{{ hadoop_tmp }}"
+  }  
+  - {
+    "name":"dfs.nfs.rtmax",
+    "value":"1073741824"
+  }
+  - {
+    "name":"dfs.nfs.wtmax",
+    "value":"1073741824"
+  }
+  - {
+    "name":"dfs.nfs.wtmax",
+    "value":"1073741824"
+  }
+  - {
+    "name":"nfs.superuser",
+    "value":"root"
+  }
+  - {
+    "name":"hadoop.proxyuser.{{ ansible_hostname }}.hosts",
+    "value":"*"
+  }  
 mapred_site_properties:
  - {
    "name": "mapreduce.framework.name",
